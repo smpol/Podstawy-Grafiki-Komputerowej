@@ -4,12 +4,17 @@
 #include <QWidget>
 #include <algorithm>
 #include <cmath>
+#include <QPushButton>
 
 class Ekran : public QWidget
 {
     Q_OBJECT
 public:
     explicit Ekran(QWidget *parent = nullptr);
+    void clearscreen()
+    {
+        im.fill(0);
+    }
     void drawPixel(int x, int y)
     {
         int width = im.width();
@@ -17,7 +22,7 @@ public:
 
         if ((x >= 0) && (x <= width) && (y >= 0) && (y <= height))
         {
-            uchar *pix = im.scanLine(y); // dostęp do piksela?
+            uchar *pix = im.scanLine(y); // dostęp do piksela
             pix[4 * x] = 255;            // blue
             pix[4 * x + 1] = 255;        // green
             pix[4 * x + 2] = 255;
@@ -62,6 +67,52 @@ public:
             }
         }
     }
+    void drawCircle(int x0, int y0, int x1, int y1)
+    {
+        int R = sqrt(((x1 - x0) * (x1 - x0)) + ((y1 - y0) * (y1 - y0)));
+        for(int x = 0; x <= (R/sqrt(2)); x++)
+        {
+            int y = sqrt(R * R - x * x);
+            drawPixel(x + x0, (int)floor(y + 0.5) + y0);
+            drawPixel(x + x0, -(int)floor(y + 0.5) + y0);
+            drawPixel(-x + x0, (int)floor(y + 0.5) + y0);
+            drawPixel(-x + x0, -(int)floor(y + 0.5) + y0);
+        }
+        for(int y = 0; y <= (R/sqrt(2)); y++)
+        {
+            int x = sqrt(R * R - y * y);
+            drawPixel((int)floor(x + 0.5) + x0, y + y0);
+            drawPixel(-(int)floor(x + 0.5) + x0, y + y0);
+            drawPixel((int)floor(x + 0.5) + x0, -y + y0);
+            drawPixel(-(int)floor(x + 0.5) + x0, -y + y0);
+        }
+    }
+    void drawElipse(int x0, int y0, int x1, int y1)
+    {
+        int a = abs(x1 - x0);
+        int b = abs(y1 - y0);
+        // Obliczanie kąta między wierzchołkami
+        double kat = 2 * M_PI / 100;
+
+        // Rysowanie linii między kolejnymi wierzchołkami
+        for (int i = 0; i < 100; ++i)
+        {
+            // Obliczanie współrzędnych wierzchołków
+            double t1 = i * kat;
+            double t2 = (i + 1) * kat;
+            // x = a cos t
+            // y = b sin t
+            // gdzie t <0, 2PI>
+            int x1_vertex = a * cos(t1);
+            int y1_vertex = b * sin(t1);
+            int x2_vertex = a * cos(t2);
+            int y2_vertex = b * sin(t2);
+
+            // Rysowanie linii między wierzchołkami
+            drawLine(x1_vertex + x1, y1_vertex +y1, x2_vertex+ x1, y2_vertex+y1);
+        }
+    }
+
 
 protected:
     void paintEvent(QPaintEvent *event);
