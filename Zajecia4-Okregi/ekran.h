@@ -11,10 +11,6 @@ class Ekran : public QWidget
     Q_OBJECT
 public:
     explicit Ekran(QWidget *parent = nullptr);
-    void clearscreen()
-    {
-        im.fill(0);
-    }
     void drawPixel(int x, int y)
     {
         int width = im.width();
@@ -67,53 +63,106 @@ public:
             }
         }
     }
+//    void drawCircle(int x0, int y0, int x1, int y1)
+//    {
+//        int R = sqrt(((x1 - x0) * (x1 - x0)) + ((y1 - y0) * (y1 - y0)));
+//        for(int x = 0; x <= (R/sqrt(2)); x++)
+//        {
+//            int y = sqrt(R * R - x * x);
+//            drawPixel(x + x0, (int)floor(y + 0.5) + y0);
+//            drawPixel(x + x0, -(int)floor(y + 0.5) + y0);
+//            drawPixel(-x + x0, (int)floor(y + 0.5) + y0);
+//            drawPixel(-x + x0, -(int)floor(y + 0.5) + y0);
+
+//        }
+//        for(int y = 0; y <= (R/sqrt(2)); y++)
+//        {
+//            int x = sqrt(R * R - y * y);
+//            drawPixel((int)floor(x + 0.5) + x0, y + y0);
+//            drawPixel(-(int)floor(x + 0.5) + x0, y + y0);
+//            drawPixel((int)floor(x + 0.5) + x0, -y + y0);
+//            drawPixel(-(int)floor(x + 0.5) + x0, -y + y0);
+//        }
+//    }
     void drawCircle(int x0, int y0, int x1, int y1)
     {
         int R = sqrt(((x1 - x0) * (x1 - x0)) + ((y1 - y0) * (y1 - y0)));
-        for(int x = 0; x <= (R/sqrt(2)); x++)
+        for(int i = 0; i <= (R/sqrt(2)); i++)
         {
-            int y = sqrt(R * R - x * x);
-            drawPixel(x + x0, (int)floor(y + 0.5) + y0);
-            drawPixel(x + x0, -(int)floor(y + 0.5) + y0);
-            drawPixel(-x + x0, (int)floor(y + 0.5) + y0);
-            drawPixel(-x + x0, -(int)floor(y + 0.5) + y0);
-        }
-        for(int y = 0; y <= (R/sqrt(2)); y++)
-        {
-            int x = sqrt(R * R - y * y);
-            drawPixel((int)floor(x + 0.5) + x0, y + y0);
-            drawPixel(-(int)floor(x + 0.5) + x0, y + y0);
-            drawPixel((int)floor(x + 0.5) + x0, -y + y0);
-            drawPixel(-(int)floor(x + 0.5) + x0, -y + y0);
-        }
-    }
-    void drawElipse(int x0, int y0, int x1, int y1)
-    {
-        int a = abs(x1 - x0);
-        int b = abs(y1 - y0);
-        // Obliczanie kąta między wierzchołkami
-        double kat = 2 * M_PI / 100;
+            int xy = sqrt(R * R - i * i);
+            //int xy = sqrt(R * R - i * i);
 
-        // Rysowanie linii między kolejnymi wierzchołkami
-        for (int i = 0; i < 100; ++i)
-        {
-            // Obliczanie współrzędnych wierzchołków
-            double t1 = i * kat;
-            double t2 = (i + 1) * kat;
-            // x = a cos t
-            // y = b sin t
-            // gdzie t <0, 2PI>
-            int x1_vertex = a * cos(t1);
-            int y1_vertex = b * sin(t1);
-            int x2_vertex = a * cos(t2);
-            int y2_vertex = b * sin(t2);
+            drawPixel(i + x0, (int)floor(xy + 0.5) + y0);
+            drawPixel(i + x0, -(int)floor(xy + 0.5) + y0);
+            drawPixel(-i + x0, (int)floor(xy + 0.5) + y0);
+            drawPixel(-i + x0, -(int)floor(xy + 0.5) + y0);
 
-            // Rysowanie linii między wierzchołkami
-            drawLine(x1_vertex + x1, y1_vertex +y1, x2_vertex+ x1, y2_vertex+y1);
+
+            drawPixel((int)floor(xy + 0.5) + x0, i + y0);
+            drawPixel(-(int)floor(xy + 0.5) + x0, i + y0);
+            drawPixel((int)floor(xy + 0.5) + x0, -i + y0);
+            drawPixel(-(int)floor(xy + 0.5) + x0, -i + y0);
+
         }
     }
 
 
+//    void drawElipse(int x0, int y0, int x1, int y1, int temp)
+//    {
+//        int a = abs(x1 - x0);
+//        int b = abs(y1 - y0);
+//        // Obliczanie kąta między wierzchołkami
+//        double kat = 2 * M_PI / temp;
+//        //tam gdzie 100 oznacza ile boków ma być
+//        // Rysowanie linii między kolejnymi wierzchołkami
+//        for (int i = 0; i < temp; ++i) // tutaj też
+//        {
+//            // Obliczanie współrzędnych wierzchołków
+//            double t1 = i * kat;
+//            double t2 = (i + 1) * kat;
+//            // x = a cos t
+//            // y = b sin t
+//            // gdzie t <0, 2PI>
+//            int x1_vertex = a * cos(t1);
+//            int y1_vertex = b * sin(t1);
+//            int x2_vertex = a * cos(t2);
+//            int y2_vertex = b * sin(t2);
+
+
+//            //drawPixel(x1, y1); // srodek punktu
+
+//            // Rysowanie linii między wierzchołkami
+//            drawLine(x1_vertex + x1, y1_vertex +y1, x2_vertex+ x1, y2_vertex+y1);
+//        }
+//    }
+
+    void drawElipse(int x0, int y0, int x1, int y1, int suwaczek)
+       {
+           int a = abs(x1 - x0);
+           int b = abs(y1 - y0);
+           int pxTemp,pyTemp,py,px;
+           double kat;
+           // Rysowanie linii między kolejnymi wierzchołkami
+           for (int i = 0; i <= suwaczek; ++i)
+           {
+               //obliczenie kąta miedzy punktami
+               kat = i * 2 * M_PI / suwaczek;
+               px = x0 + a * cos(kat); //ruszanie pierwszej przekatnej wzgledem x
+               py = y0 + b * sin(kat); //ruszanie drugiej przekatnej wzgledem y
+               if(i>0)
+               {
+                   drawLine(px, py, pxTemp, pyTemp);
+               }
+               pxTemp = px;
+               pyTemp = py;
+           }
+       }
+
+public slots:
+    void wartosc(int);
+    void czysc();
+    void tryb_elipsa();
+    void tryb_kolo();
 protected:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *);

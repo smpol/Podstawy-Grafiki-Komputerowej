@@ -7,6 +7,8 @@
 
 #define wysokosc 1000
 #define szerokosc 1000
+int temp=100;
+bool elipsa=false;
 
 Ekran::Ekran(QWidget *parent)    : QWidget{parent}
 {
@@ -18,6 +20,28 @@ Ekran::Ekran(QWidget *parent)    : QWidget{parent}
 
 }
 
+void Ekran::wartosc(int n)
+{
+    //qDebug("%d", n);
+    temp=n;
+}
+
+void Ekran::czysc()
+{
+    im.fill(0);
+    update();
+}
+
+void Ekran::tryb_elipsa()
+{
+    elipsa=true;
+}
+void Ekran::tryb_kolo()
+{
+    elipsa=false;
+}
+
+
 void Ekran::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
@@ -27,20 +51,20 @@ void Ekran::paintEvent(QPaintEvent *)
 // zmienne przechowujace koordynaty 1 punktu
 int startX=0;
 int startY=0;
-bool elipsa=false;
+//bool elipsa=false;
 
 void Ekran::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button()==Qt::RightButton) // czyszczenie całego ekranu gdy wcisniemy prawy przycisk
-    {
-        //im.fill(0);
-        elipsa=true;
+//    if (e->button()==Qt::RightButton) // czyszczenie całego ekranu gdy wcisniemy prawy przycisk
+//    {
+//        //im.fill(0);
+//        //elipsa=true;
 
-    }
-    else if(e->button()==Qt::LeftButton)
-    {
-        elipsa=false;
-    }
+//    }
+//    else if(e->button()==Qt::LeftButton)
+//    {
+//        //elipsa=false;
+//    }
     startX=e->pos().x();
     startY=e->pos().y();
     im_copy=im;
@@ -53,7 +77,7 @@ void Ekran::mouseMoveEvent(QMouseEvent *e)
     im=im_copy;
 
     if (elipsa==true)
-        drawElipse(startX, startY, e->pos().x(), e->pos().y());
+        drawElipse(startX, startY, e->pos().x(), e->pos().y(), temp);
     else
         drawCircle(startX, startY, e->pos().x(), e->pos().y());
 
