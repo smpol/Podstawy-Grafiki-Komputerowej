@@ -4,16 +4,14 @@
 #include <QThread>
 #include <QPushButton>
 #include <QWidget>
-#include <vector>
 
 #define wysokosc 1000
 #define szerokosc 1000
 int temp = 100;
+int liczba_k=5000;
 bool elipsa = false;
 
 QVector<QPointF> points;
-// std::vector<vector<int>> points_2d;
-// QVector<QVector<int>> points_2d;
 
 Ekran::Ekran(QWidget *parent) : QWidget{parent}
 {
@@ -22,6 +20,27 @@ Ekran::Ekran(QWidget *parent) : QWidget{parent}
 
     //    im_copy = QImage(szerokosc, wysokosc, QImage::Format_RGB32);
     //    im_copy.fill(0);
+}
+
+void Ekran::set_k_string(QString n)
+{
+    bool ok; // nie wiem po co to jest ale musi być
+    liczba_k=n.toInt(&ok, 10);
+    qDebug("Ustawiona wartosc nowa: %d", liczba_k);
+    if (points.size()>0)
+    {
+        im.fill(0);
+        for (int i = 0; i < points.size(); i++)
+        {
+            drawPixel(points[i].x(), points[i].y());
+        }
+        if (points.size() >= 4)
+        {
+            drawBezier(points, liczba_k);
+        }
+    }
+    update();
+
 }
 
 void Ekran::wartosc(int n)
@@ -81,7 +100,7 @@ void Ekran::mousePressEvent(QMouseEvent *e)
     }
     if (points.size() >= 4)
     {
-        drawBezier(points, 5000);
+        drawBezier(points, liczba_k);
     }
 
     update(); // odświeżanie okna
@@ -110,7 +129,7 @@ void Ekran::mouseMoveEvent(QMouseEvent *e)
             }
             if (points.size() >= 4)
             {
-                drawBezier(points, 5000);
+                drawBezier(points, liczba_k);
             }
         }
     }

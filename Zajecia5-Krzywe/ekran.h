@@ -133,35 +133,23 @@ public:
 
     void drawBezier(QVector<QPointF> &points, int k)
     {
-        //uzywajac drawPixel
-//        for (int i=0; i<points.size()-3; i+=3)
-//        {
-//            for (int j=0; j<k; j++)
-//            {
-//                float t = (float)j/(float)k;
-//                double x = (1-t)*(1-t)*(1-t)*points[0+i].x() + 3*(1-t)*(1-t)*t*points[1+i].x() + 3*(1-t)*t*t*points[2+i].x() + t*t*t*points[3+i].x();
-//                double y = (1-t)*(1-t)*(1-t)*points[0+i].y() + 3*(1-t)*(1-t)*t*points[1+i].y() + 3*(1-t)*t*t*points[2+i].y() + t*t*t*points[3+i].y();
-//                drawPixel(x, y);
-//            }
-//        }
-
-
-    //     uzywajac drawLine
-       QPointF temp1, temp2;
+//     uzywajac drawLine
+       QPointF poczatek_lini, koniec_lini;
+       qDebug("Wywolanie funkcji z k %d", k);
        for (int i=0; i<points.size()-3; i+=3)
        {
-           for (int j=0; j<k; j++)
+           for (int j=0; j<=k; j++)
            {
                float t = (float)j/(float)k;
-               temp1 = (1-t)*(1-t)*(1-t)*points[0+i] + 3*(1-t)*(1-t)*t*points[1+i] + 3*(1-t)*t*t*points[2+i] + t*t*t*points[3+i];
+               poczatek_lini = (1-t)*(1-t)*(1-t)*points[0+i] + 3*(1-t)*(1-t)*t*points[1+i] + 3*(1-t)*t*t*points[2+i] + t*t*t*points[3+i];
                if (j==0)
                {
-                   temp2 = temp1;
+                   koniec_lini = poczatek_lini;
                }
                else
                {
-                   drawLine(temp1.x(), temp1.y(), temp2.x(), temp2.y());
-                   temp2 = temp1;
+                   drawLine(poczatek_lini.x(), poczatek_lini.y(), koniec_lini.x(), koniec_lini.y());
+                   koniec_lini = poczatek_lini;
                }
            }
        }
@@ -172,6 +160,7 @@ public slots:
     void czysc();
     void tryb_elipsa();
     void tryb_kolo();
+    void set_k_string(QString);
 
 protected:
     void paintEvent(QPaintEvent *event);
