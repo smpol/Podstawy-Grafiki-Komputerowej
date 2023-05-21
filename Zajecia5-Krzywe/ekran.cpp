@@ -9,9 +9,45 @@
 #define szerokosc 1000
 int temp = 100;
 int liczba_k=5000;
-bool elipsa = false;
+bool bspline = false;
 
 QVector<QPointF> points;
+
+void Ekran::setBezier()
+{
+    bspline=false;
+    im.fill(0);
+    for (int i = 0; i < points.size(); i++)
+    {
+        drawPixel(points[i].x(), points[i].y());
+    }
+    if (points.size() >= 4)
+    {
+        if (bspline)
+            drawBSpline(points, liczba_k);
+        else
+            drawBezier(points, liczba_k);
+    }
+    update();
+}
+
+void Ekran::setBSpline()
+{
+    bspline = true;
+    im.fill(0);
+    for (int i = 0; i < points.size(); i++)
+    {
+        drawPixel(points[i].x(), points[i].y());
+    }
+    if (points.size() >= 4)
+    {
+        if (bspline)
+            drawBSpline(points, liczba_k);
+        else
+            drawBezier(points, liczba_k);
+    }
+    update();
+}
 
 Ekran::Ekran(QWidget *parent) : QWidget{parent}
 {
@@ -36,16 +72,14 @@ void Ekran::set_k_string(QString n)
         }
         if (points.size() >= 4)
         {
-            drawBezier(points, liczba_k);
+            if (bspline)
+                drawBSpline(points, liczba_k);
+            else
+                drawBezier(points, liczba_k);
         }
     }
     update();
 
-}
-
-void Ekran::wartosc(int n)
-{
-    temp = n;
 }
 
 void Ekran::czysc()
@@ -54,15 +88,6 @@ void Ekran::czysc()
     //    im_copy.fill(0);
     points.clear();
     update();
-}
-
-void Ekran::tryb_elipsa()
-{
-    elipsa = true;
-}
-void Ekran::tryb_kolo()
-{
-    elipsa = false;
 }
 
 void Ekran::paintEvent(QPaintEvent *)
@@ -100,7 +125,10 @@ void Ekran::mousePressEvent(QMouseEvent *e)
     }
     if (points.size() >= 4)
     {
-        drawBezier(points, liczba_k);
+        if (bspline)
+            drawBSpline(points, liczba_k);
+        else
+            drawBezier(points, liczba_k);
     }
 
     update(); // odświeżanie okna
@@ -129,7 +157,11 @@ void Ekran::mouseMoveEvent(QMouseEvent *e)
             }
             if (points.size() >= 4)
             {
-                drawBezier(points, liczba_k);
+                //drawBezier(points, liczba_k);
+                if (bspline)
+                    drawBSpline(points, liczba_k);
+                else
+                    drawBezier(points, liczba_k);
             }
         }
     }
