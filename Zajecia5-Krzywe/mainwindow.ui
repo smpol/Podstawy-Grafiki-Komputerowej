@@ -59,35 +59,6 @@
      <number>5000</number>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioBezier">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>180</y>
-      <width>99</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Bezier</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="radioBSpline">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>220</y>
-      <width>99</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>B-Spline</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

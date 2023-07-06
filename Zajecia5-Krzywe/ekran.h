@@ -154,35 +154,13 @@ public:
            }
        }
     }
-    void drawBSpline(QVector<QPointF> &points, int k)
-    {
-        QPointF poczatek_lini, koniec_lini;
-        for (int i=0; i<points.size()-3; i++)
-        {
-            for (int j=0; j<=k; j++)
-            {
-                float t = (float)j/(float)k;
-
-                //bspline
-                poczatek_lini = ((float)1/6)*(-pow(t,3) + 3*pow(t,2) - 3*t + 1)*points[0+i] + ((float)1/6)*(3*pow(t,3) - 6*pow(t,2) + 4)*points[1+i] + ((float)1/6)*(-3*pow(t,3) + 3*pow(t,2) + 3*t + 1)*points[2+i] + ((float)1/6)*pow(t,3)*points[3+i];
-                if (j==0)
-                {
-                    koniec_lini = poczatek_lini;
-                }
-                else
-                {
-                    drawLine(poczatek_lini.x(), poczatek_lini.y(), koniec_lini.x(), koniec_lini.y());
-                    koniec_lini = poczatek_lini;
-                }
-            }
-        }
-    }
 
 public slots:
+    void wartosc(int);
     void czysc();
+    void tryb_elipsa();
+    void tryb_kolo();
     void set_k_string(QString);
-    void setBezier();
-    void setBSpline();
 
 protected:
     void paintEvent(QPaintEvent *event);

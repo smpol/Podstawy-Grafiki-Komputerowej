@@ -17,6 +17,9 @@ public:
     ~MainWindow();
 
 private slots:
+    void setWartosc(int);
+
+
 
 private:
     Ui::MainWindow *ui;

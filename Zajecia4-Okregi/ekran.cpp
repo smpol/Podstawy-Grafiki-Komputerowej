@@ -22,7 +22,7 @@ Ekran::Ekran(QWidget *parent)    : QWidget{parent}
 
 void Ekran::wartosc(int n)
 {
-    //qDebug("%d", n);
+    qDebug("%d", n);
     temp=n;
 }
 

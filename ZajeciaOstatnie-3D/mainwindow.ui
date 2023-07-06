@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1262</width>
+    <height>747</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Przekształcenia 3D</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="Ekran" name="ekran" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1000</width>
+      <height>690</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSlider" name="x_slider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>150</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-140</number>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="value">
+     <number>75</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="y_slider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>180</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-140</number>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="value">
+     <number>75</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="sx_slider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>260</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <number>150</number>
+    </property>
+    <property name="pageStep">
+     <number>10</number>
+    </property>
+    <property name="value">
+     <number>80</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="sy_slider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>290</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <number>150</number>
+    </property>
+    <property name="value">
+     <number>80</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="obrot_sliderX">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>370</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-180</number>
+    </property>
+    <property name="maximum">
+     <number>180</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ukryj_check">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>460</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ukrywanie Ścian</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>130</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Translacja</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>240</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Skalowanie</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>340</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rotacja</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="z_slider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>210</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>90</number>
+    </property>
+    <property name="maximum">
+     <number>300</number>
+    </property>
+    <property name="value">
+     <number>195</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="sz_slider">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>320</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>10</number>
+    </property>
+    <property name="maximum">
+     <number>150</number>
+    </property>
+    <property name="value">
+     <number>80</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="obrot_sliderY">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>400</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-180</number>
+    </property>
+    <property name="maximum">
+     <number>180</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="obrot_sliderZ">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>430</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-180</number>
+    </property>
+    <property name="maximum">
+     <number>180</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="texture_check">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>490</y>
+      <width>171</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Teksturowanie</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1262</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Ekran</class>
+   <extends>QWidget</extends>
+   <header location="global">ekran.h</header>
+   <container>1</container>
+   <slots>
+    <signal>setCurrentAlpha(int)</signal>
+    <slot>alphaSliderChange(int)</slot>
+    <slot>warstwaButton()</slot>
+    <slot>alphaSliderChange()</slot>
+    <slot>setAlpha(int)</slot>
+    <slot>blendMode()</slot>
+    <slot>scaleX(int)</slot>
+    <slot>scaleY(int)</slot>
+    <slot>scaleZ(int)</slot>
+    <slot>rotX(int)</slot>
+    <slot>rotY(int)</slot>
+    <slot>rotZ(int)</slot>
+    <slot>transX(int)</slot>
+    <slot>transY(int)</slot>
+    <slot>transZ(int)</slot>
+    <slot>przesX(int)</slot>
+    <slot>przesY(int)</slot>
+    <slot>skalX(int)</slot>
+    <slot>skalY(int)</slot>
+    <slot>rotacja(int)</slot>
+    <slot>pochX(int)</slot>
+    <slot>pochY(int)</slot>
+    <slot>ogniskowa(int)</slot>
+    <slot>stateChanged(int)</slot>
+    <slot>teksturaChanged(int)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

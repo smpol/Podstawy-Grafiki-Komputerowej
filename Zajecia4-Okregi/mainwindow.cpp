@@ -12,14 +12,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->b_czysc, SIGNAL(clicked(bool)), ui->ekran, SLOT(czysc()));
     connect(ui->radioElipsa, SIGNAL(toggled(bool)), ui->ekran, SLOT(tryb_elipsa()));
     connect(ui->radioKolo, SIGNAL(toggled(bool)), ui->ekran, SLOT(tryb_kolo()));
-
-    //connect QSlider "suwak" to QTextEdit "ilosc"
-    connect(ui->suwak, SIGNAL(valueChanged(int)), ui->ilosc, SLOT(setNum(int)));
+    connect(ui->suwak, SIGNAL(valueChanged(int)), this, SLOT(setWartosc(int)));
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setWartosc(int n)
+{
+    ui->wartosc->setText(QString("%0").arg(n));
 }
 
